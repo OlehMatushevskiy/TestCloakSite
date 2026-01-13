@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AF Bridge Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        button { padding: 20px; font-size: 20px; width: 100%; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Test AppsFlyer Bridge</h1>
+
+    <button onclick="sendRegistration()">Send: Registration</button>
+    <button onclick="sendDeposit()">Send: Deposit $100</button>
+
+    <script>
+        function sendRegistration() {
+            
+            if (window.webkit && window.webkit.messageHandlers.afBridge) {
+                window.webkit.messageHandlers.afBridge.postMessage({
+                    "event_name": "af_complete_registration",
+                    "values": { "af_registration_method": "test_button" }
+                });
+                alert("Сигнал реєстрації відправлено в Swift!");
+            } else {
+                alert("Міст afBridge не знайдено (ви не в додатку)");
+            }
+        }
+
+        function sendDeposit() {
+            if (window.webkit && window.webkit.messageHandlers.afBridge) {
+                window.webkit.messageHandlers.afBridge.postMessage({
+                    "event_name": "af_purchase",
+                    "values": { "af_revenue": 100, "af_currency": "USD" }
+                });
+                alert("Сигнал депозиту відправлено в Swift!");
+            }
+        }
+    </script>
+</body>
+</html>

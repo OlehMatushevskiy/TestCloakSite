@@ -9,14 +9,14 @@
     </style>
 </head>
 <body>
-    <h1>Test AppsFlyer Bridge</h1>
+    <h1>Test AppsFlyer Bridge f</h1>
 
     <button onclick="sendRegistration()">Send: Registration</button>
     <button onclick="sendDeposit()">Send: Deposit $100</button>
 
     <script>
         function sendRegistration() {
-            
+
             if (window.webkit && window.webkit.messageHandlers.afBridge) {
                 window.webkit.messageHandlers.afBridge.postMessage({
                     "event_name": "af_complete_registration",
